@@ -1,0 +1,54 @@
+name = "NAME"
+source_language = "Norwegian"
+
+# In order, and only ever added to at the end: page numbers follow this list. Scans (PDF, JPEG, PNG, TIFF...) go
+# through OCR; .txt and .md files are taken as already read. Patterns and folders are read in name order.
+sources = ["scans/first.pdf"]
+
+# What the book is. Every stage is told this.
+about = """Who wrote it, when, for whom, in what kind of language."""
+
+# What a reader must not correct, such as old spelling. Leave empty for ordinary modern print.
+source_notes = """"""
+
+# Consulted for every language; each [[translation]] can add its own.
+references = []
+
+# Repeat this block for each language. They run in the order listed.
+[[translation]]
+language = "English"
+
+# How it should read: the voice, the typography, the conventions of the language.
+voice = """Natural and plain."""
+
+# Wikipedia articles, other web pages and local files (text, Markdown, PDF). The glossary takes names and terms from these.
+references = [
+    # "https://en.wikipedia.org/wiki/Some_article",
+    # "texts/notes.md",
+]
+
+# Texts whose voice the translator should have in its ear. The start of each goes along with every section.
+style_samples = []
+
+# Decisions the glossary must follow, whatever the references say: "The diarist is X, not Y."
+glossary_notes = """"""
+
+# An earlier [[translation]] in this project, for the translator to confirm hard readings against.
+# cross_check = "English"
+
+# For a language in another script, e.g. "cyrillic": words outside it count as text left untranslated.
+# script = "cyrillic"
+# allow_foreign = ["words", "the", "source", "really", "quotes"]
+
+# Allowed length against the source, in words. Use [] for languages not written with spaces.
+# length_ratio = [0.8, 1.45]
+
+# Models for this language; defaults.toml lists the roles. No vendor prefix means direct to Anthropic.
+# [translation.models]
+# translate = "google/gemini-4-argon"
+
+# Any of defaults.toml can be overridden for this book:
+# [models]
+# proofread_advisory = ["anthropic/claude-haiku-5.5"]
+# [run]
+# max_cost_usd = 10.0

@@ -1,0 +1,24 @@
+# Used by every project; a project's own [models] and [run], then a translation's [translation.models], override these.
+# A model with a vendor prefix goes through OpenRouter; one without goes directly to Anthropic on CLAUDE_API_KEY.
+[models]
+# Reading pages is always through OpenRouter. Chosen by the bake-off of 2026-10-30 (see README).
+ocr_a = "google/gemini-3.8-flash"
+ocr_a_reasoning = "low"  # a third of the cost; the second reader catches what this loses on damaged pages
+ocr_b = "google/gemini-4-argon"
+ocr_adjudicate = "anthropic/claude-haiku-5.5"  # same rulings as Sonnet on 14 real disputes, 1/20 the cost
+ocr_fallback = "anthropic/claude-sonnet-5.5"  # for when a reader returns nothing usable, e.g. Gemini's RECITATION block
+
+glossary = "claude-opus-5-5"
+translate = "claude-opus-5-5"
+translate_fallback = "google/gemini-4-argon"  # another vendor, for when the translator refuses or fails the checks
+proofread = ["claude-opus-5-5"]  # edits are applied
+proofread_advisory = []  # these only suggest, in the QA report
+align = "claude-opus-5-5"
+fallback = "anthropic/claude-sonnet-5.5"  # for a proofreader that returns nothing usable
+
+[run]
+concurrency = 2           # OpenRouter holds back credit per request in flight, so low balances need this low
+max_cost_usd = 25.0       # hard stop for one command
+chunk_target_words = 900  # sections grow entry by entry until they reach this
+reference_chars = 60000   # read from each reference when writing the glossary
+style_chars = 6000        # read from each style sample, which goes to the translator with every section

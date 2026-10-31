@@ -1,0 +1,15 @@
+[project]
+name = "nifty-translator"
+version = "0.1.0"
+description = "Turns a scanned or OCRed book into a checked translation, through OpenRouter or Claude"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=2.3.0",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

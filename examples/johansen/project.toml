@@ -1,0 +1,46 @@
+# The book this tool was distilled from. Copy to projects/johansen/ and put the scans beside it.
+name = "johansen"
+source_language = "Norwegian"
+# In scan order, and only ever added to at the end: page numbers follow this list.
+sources = ["scans/first.pdf", "scans/second.pdf"]
+
+about = """The 2011 Frammuseet edition of Hjalmar Johansen's diaries from Amundsen's South Pole expedition, 1910-1912, edited by Geir O. Kløver. Johansen (1867-1913) was a veteran of Nansen's first Fram expedition and an army officer: experienced, observant, dry, increasingly bitter about how this expedition is run. He writes private notes. The editor's foreword and notes are modern Norwegian."""
+
+source_notes = """The diary text is 1910 Dano-Norwegian and the editor deliberately kept Johansen's spelling and errors. Spellings such as "Nogle", "hvad", "fandt", "bagbord", "mandskab", "Flækkerø", and inconsistent ones such as "Dungeness"/"Dungenees", are correct as printed."""
+
+[[translation]]
+language = "English"
+allow_foreign = []
+voice = """Natural British English with a slight period feel, no pastiche, for readers of polar history. Keep his plain, note-like voice. Use correct nautical and polar terms (watch, jib boom, main hold, gale, roadstead, depot, sledge). Keep personal, ship and place names as printed, except well-known places with an established English form. Keep dates in his format."""
+
+[translation.models]
+translate = "google/gemini-4-argon"  # about a third of the cost; proofreading caught the two Spanish words it let through
+translate_fallback = "claude-opus-5-5"
+
+[[translation]]
+language = "Russian"
+script = "cyrillic"
+cross_check = "English"
+allow_foreign = ["labrailleu", "medulla", "oblongata", "Clavelina", "lepadiformis", "eins", "Bier"]
+length_ratio = [0.8, 1.4]
+refusal = "не могу (перевести|предоставить)|краткое содержание"
+references = [
+    "https://ru.wikipedia.org/wiki/Норвежская_антарктическая_экспедиция_(1910—1912)",
+    "https://ru.wikipedia.org/wiki/Юхансен,_Ялмар",
+]
+# style_samples = ["texts/amundsen_yuzhny_polyus.txt"]  # any Soviet-era polar diary you have as text
+glossary_notes = """The diarist is Ялмар Йохансен, not Юхансен. The expedition is the Антарктическая экспедиция. Keep сани and партия for sledges and parties."""
+voice = """The school that gave Russian readers Nansen's «Фрам» в полярном море, Amundsen's Южный полюс and Scott's last diaries in the Soviet editions of the 1930s-1950s. This must read as a page from a polar explorer's diary on the shelf of a Russian childhood: a tired, exact man writing in a sleeping bag or a cabin, for himself, not a translated document.
+- Write the way Russian expedition diaries are written. Drop the subject as he does: "Прошли 15 миль. Ветер стих к вечеру. Собаки устали." Short, plain statements of fact sit next to a rare sentence of feeling, and the feeling is never dressed up.
+- Use the natural Russian of a Russian seaman and polar traveller: "заштилело", "задуло", "легли в дрейф", "тяжёлая дорога", "пурга", "мгла", "заструги", "17° мороза", "стали лагерем", "тронулись в 9 утра".
+- Let the verbs carry it. Prefer a plain verb to a noun phrase: "долго возились с упряжкой", not "процесс работы с упряжкой занял много времени".
+- Period feel comes from restraint and vocabulary. Do not pastiche: no "сей", "оный", "дабы", "ибо" and no pre-revolutionary spelling. A few old-fashioned turns are welcome where natural: "весьма", "изрядно", "порядком", "надо полагать", "как водится", "благо".
+- Avoid modern and bureaucratic Russian: "проблема", "ситуация", "в плане", "на данный момент", "является", "осуществлять", "данный", "позитивный", "реально", strings of genitives, and participial clauses stacked up as in a report.
+- His dryness and sarcasm stay dry. His temper stays his. Rough words stay rough, at the strength of the original.
+- Translate the editor's text into clean modern literary Russian, without the diary voice.
+
+Typography:
+- Quotation marks «», nested „“. Em dash — with spaces. Decimal comma: –17,3; 732,5. Use the letter ё wherever it belongs.
+- Ordinals: 1-й, 2-го, 13-й день. Dates in his format, with the weekday in the nominative: "## Пятница 19 августа 1910".
+- Ship and dog names go in «» and decline: на «Фраме», у «Ликета».
+- Every word goes in Cyrillic, including names and instruments. The only exceptions are Latin scientific terms, and quoted foreign phrases that he himself writes in a foreign language."""
